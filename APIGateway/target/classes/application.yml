@@ -1,0 +1,21 @@
+server:
+  port: 8060
+spring:
+  application:
+    name: APIGateway
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: STUDENTSERVICE
+            uri: lb://STUDENTSERVICE
+            predicates: 
+            - Path=/Student/** 
+          - id: COLLEGESERVICE
+            uri: lb://COLLEGESERVICE
+            predicates: 
+            - Path=/college/** 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
